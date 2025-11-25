@@ -49,7 +49,7 @@ const Footer = () => {
             Let’s start our conversation to transform your
             &nbsp;
             <span className="text-black">Nothing</span> vision into &nbsp;
-            <span className="text-black">Real</span> revolutionary ideas that feel inevitable.
+            <span className="text-black">Real</span> revolutionary ideas that feel inevitable*
           </p>
         </div>
 
