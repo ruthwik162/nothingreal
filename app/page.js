@@ -217,10 +217,10 @@ export default function Page() {
                 </h1>
               </TextY>
             </div>
-            <div className="md:col-start-5 md:col-span-9 xl:-mt-[2vw] items-start justify-start overflow-hidden col-span-6">
+            <div className="md:col-start-5 md:col-span-9 xl:-mt-[2.5vw] items-start justify-start overflow-hidden col-span-6">
               <TextY>
-                <h1 className="font-[Helvetica] font-bold xl:text-[3.4vw] xl:leading-[3.8vw] text-[7vw] leading-[7vw] text-[#1E1E1E] ">
-                  making nothing to real looks by following principles
+                <h1 className="font-[Helvetica] font-bold  xl:text-[3.4vw] xl:leading-[3.8vw] text-[7vw] leading-[7vw] text-[#1E1E1E] ">
+                  making ypur nothing vision to real visuals by following principles
                 </h1>
               </TextY>
             </div>
