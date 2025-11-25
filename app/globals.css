@@ -1,26 +1,190 @@
-@import "tailwindcss";
+  @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @font-face {
+    font-family: 'MyFont';
+    src: url('/fonts/Lausanne-300.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  @font-face {
+    font-family: 'Aeonik-Bold';
+    src: url('/fonts/Aeonik-Bold.ttf') format('ttf');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Aeonik-Regular';
+    src: url('/fonts/Aeonik-Regular.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DBSharp';
+    src: url('/fonts/DBSharpGroteskVariable-VF.ttf') format('truetype');
+    font-weight: 100 900;
+    /* correct syntax: space-separated range, no dash */
+    font-stretch: 75% 125%;
+    /* remove quotes and colon spacing */
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Helvetica';
+    src: url('/fonts/Helvetica_Now_Display.ttf') format('truetype');
+    font-weight: 100 900;
+    /* correct syntax: space-separated range, no dash */
+    font-stretch: 75% 125%;
+    /* remove quotes and colon spacing */
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'PPNeueMontreal';
+    src: url('/fonts/PPNeueMontreal.woff2') format('woff2');
+    font-weight: 100 900;
+    /* correct syntax: space-separated range, no dash */
+    font-stretch: 75% 125%;
+    /* remove quotes and colon spacing */
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Alliance-meduim';
+    src: url('/fonts/alliance-neuemedium.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'radon';
+    src: url('/fonts/radon.otf') format('otf');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'sigana';
+    src: url('/fonts/Sigana_Condensed.otf') format('otf');
+    font-style: normal;
+    font-display: swap;
+  }
+
+
+  @font-face {
+    font-family: 'Alliance-neueregular';
+    src: url('/fonts/alliance-neueregular.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Alliance-semibold';
+    src: url('/fonts/alliance-plattsemibold.woff2') format('woff2');
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'MyFont2';
+    src: url('/fonts/Lausanne-500.woff2') format('woff2');
+
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Use globally */
+  body {
+    font-family: 'MyFont', sans-serif;
+    background: #16181B;
+    color: var(--foreground);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ::view-transition-group(root) {
+    z-index: auto !important;
+  }
+
+  ::view-transition-image-pair(root) {
+    isolation: isolate;
+    will-change: transform, opacity, scale;
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    z-index: 1000;
+    animation: none !important;
+  }
+
+  ::view-transition-old(root) {
+    z-index: 1;
+    animation: none !important;
+  }
+
+  .main {
+    will-change: transform, opacity;
+  }
+
+  .textH {
+    will-change: transform, opacity;
+  }
+
+
+  .logo {
+    will-change: transform, opacity, rotate, scale;
+  }
+
+  /* Optional extra CSS if you want rounded ends or color */
+  .border-line {
+    will-change: transform, opacity, rotate, scale;
+  }
+
+
+
+  .preloader {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* progress bar controlled inline, but if you prefer class-based */
+  #progress-bar {
+    will-change: width;
+  }
+
+
+
+  #card-1 .card-inner {
+    background-color: pink;
+  }  
+  
+  #card-2 .card-inner {
+    background-color: rgb(161, 117, 205);
+  }
+  #card-3 .card-inner {
+    background-color: rgb(189, 191, 211);
+  }
+  #card-4 .card-inner {
+    background-color: rgb(236, 202, 140);
+  }
+  #card-5 .card-inner {
+    background-color: rgb(77, 73, 79);
+    color: white;
+  }
+
+  #card-6 .card-inner {
+    background-color: rgba(238, 252, 80, 0.804);
+  }
+  
+
