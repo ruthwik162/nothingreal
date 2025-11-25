@@ -371,52 +371,54 @@ const Page = () => {
                 </section>
 
                 <section className="w-full md:px-[2vw] px-[5vw] min-h-screen   mt-[5vw] flex items-start justify-start  overflow-hidden">
-                    <div className="text-balance  ">
+                    <div className="  ">
                         <h1 style={{ fontStretch: "75%" }} className="text-[12vw] leading-[10vw] uppercase sm:text-5xl lg:text-6xl xl:text-[7vw] font-bold flex items-center justify-start gap-2 font-[dbsharp] ">
                             About Us
                         </h1>
 
 
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 space-y-2  mt-[3vw] items-start">
-                            <div className="md:col-start-1 md:col-span-5 text-[6vw] leading-[5.5vw] xl:text-[3vw] xl:leading-[2.5vw] font-[PPNeueMontreal] font-light ">
-                                <h1>The Story Behind Us With Our Passion To Raise </h1>
-                            </div>
-                            <div className="md:col-start-7 md:col-span-6  ">
+                        <div className="grid grid-cols-6 md:grid-cols-12 gap-4 space-y-2  mt-[3vw] pt-[5vw] md:pt-[2vw] items-start">
+                            <div className="md:col-start-1 col-start-2 col-span-5 md:col-span-5 text-[6vw] leading-[5.5vw] xl:text-[3vw] xl:leading-[2.5vw] font-[PPNeueMontreal] font-light ">
                                 <TextY>
-                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-semibold pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
+                                    <h1>The Story Behind Us With Our Passion To Raise </h1>
+                                </TextY>
+                            </div>
+                            <div className="md:col-start-7 col-start-1 col-span-5 md:col-span-6 pt-[5vw] md:pt-[2vw] ">
+                                <TextY>
+                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
                                         At <span style={{ fontStretch: "75%" }} className="text-red-500 font-bold tracking-wide font-[dbsharp]">NR Studios</span>, we bring ideas to life through powerful, responsive, and beautifully designed websites. We're a creative web studio passionate about crafting digital experiences that not only look great but also deliver real results.
                                     </p>
                                 </TextY>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
+                        <div className="grid grid-cols-6  md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
 
-                            <div className="md:col-start-7 md:col-span-6  ">
+                            <div className="md:col-start-7 col-start-2 col-span-5 md:col-span-6  pt-[5vw] md:pt-[2vw]">
                                 <TextY>
-                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-semibold pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
+                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
                                         We belive in the power of creativity and technology to transform ideas into impactful digital experiences. we focus more on the emotion and story telling experience to connect, we belive that every innovation need right and toughtul impactfull team and that we are the right to choose
                                     </p>
                                 </TextY>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
+                        <div className="grid grid-cols-6 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
 
-                            <div className="md:col-start-7 md:col-span-6  ">
+                            <div className="md:col-start-7 col-start-1 col-span-5 md:col-span-6  pt-[5vw] md:pt-[2vw]">
                                 <TextY>
-                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-semibold pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
+                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
                                         Our team of skilled designers, developers, and strategists work closely with clients to understand their vision and goals. We believe that a great website is more than just aesthetics; it's about creating an engaging user experience that drives conversions and builds brand loyalty.
                                     </p>
                                 </TextY>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
+                        <div className="grid grid-cols-6 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
 
-                            <div className="md:col-start-7 md:col-span-7  ">
+                            <div className="md:col-start-7 col-start-2 col-span-5 md:col-span-6  pt-[5vw] md:pt-[2vw]">
                                 <TextY>
-                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-semibold pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
+                                    <p className="text-base w-full sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4.5vw] leading-[4.5vw] md:text-[2.5vw]  md:leading-[3vw] lg:text-[2.2vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.5vw]   ">
                                         We collaborate with startups, brands, and creators to craft tailor-made web solutions that tell their story and drive real impact.
                                         From clean portfolio sites to complete web applications, we build with purpose, precision, and passion.
                                     </p>
@@ -498,7 +500,7 @@ const Page = () => {
                                 </div>
                             </div>
                             <div className="lg:col-start-5 lg:col-span-8 md:col-start-4 md:col-span-9 ">
-                                <div ref={imageDiv} className="w-full h-full overflow-hidden bg-red-600 rounded-sm">
+                                <div ref={imageDiv} className="w-full h-full overflow-hidden  rounded-sm">
                                     <img ref={mainbanner} className="w-full h-full object-center object-cover  rounded-sm" loading="lazy-loading" src={images.mainbanner1.src} alt="" />
                                 </div>
                             </div>
@@ -514,12 +516,12 @@ const Page = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 space-y-2 mt-[3vw]  items-start">
                         <div className="md:col-start-6 md:col-span-2    ">
-                            <h1 style={{ fontStretch: "75%" }} className="text-base sm:text-lg pt-[1vw] md:text-[3vw] md:leading-[3vw] lg:text-[1.5vw] lg:leading-[2.5vw] text-start font-[Alliance-meduim] text-[5vw] leading-[5vw] xl:text-[1.5vw]  text-white/80 xl:leading-[2vw]"> Aim
+                            <h1 style={{ fontStretch: "75%" }} className=" sm:text-lg pt-[1vw] md:text-[3vw] md:leading-[3vw] lg:text-[1.5vw] lg:leading-[2.5vw] text-start font-[PPNeueMontreal] tracking-wide font-bold uppercase text-[5vw] leading-[5vw] xl:text-[1.5vw]  text-white/80 xl:leading-[2vw]"> Aim
                             </h1>
                         </div>
                         <div className="md:col-start-6 md:col-span-6 ">
                             <TextY>
-                                <p className="text-base tracking-tight sm:text-lg font-[Helvetica] pb-[1vw] text-[4vw] leading-[4vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.5vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.2vw] text-white/80 2xl:text-[1.2vw] 2xl:leading-[1.5vw]   ">
+                                <p className="text-base tracking-tight sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4vw] leading-[4.5vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.5vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.7vw]   ">
                                     We craft digital experiences that combine creativity with precision. From designing intuitive UI/UX and developing custom web solutions to deploying scalable full-stack applications, we turn ideas into high-performing, visually stunning websites that drive real results.
                                 </p>
                             </TextY>
@@ -550,7 +552,7 @@ const Page = () => {
                         </div>
                         <div className="md:col-start-6 col-start-1 w-full col-span-6 md:col-span-6 ">
                             <TextY>
-                                <p className="text-base  sm:text-lg font-[Helvetica]  pb-[1vw] text-[5vw] leading-[5vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.5vw] lg:leading-[2.5vw] xl:leading-[1.2vw] xl:text-[1.2vw] text-white/80 2xl:text-[1.2vw] 2xl:leading-[1.5vw]   ">
+                                <p className="text-base tracking-tight sm:text-lg font-[PPNeueMontreal] font-medium pb-[1vw] text-[4vw] leading-[4vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.5vw] lg:leading-[2.5vw] xl:leading-[1.5vw] xl:text-[1.5vw] text-white/80 2xl:text-[1.5vw] 2xl:leading-[1.7vw]   ">
                                     At our studio, creativity meets precision. We’re a team of passionate developers and designers who believe every digital experience should feel as good as it looks. From crafting seamless UI/UX flows to building powerful full-stack applications, we handle every step with care — design, development, testing, and deployment.
                                 </p>
                             </TextY>

@@ -36,10 +36,9 @@ const AccordionItem = ({ index, title, content, isOpen, onClick }) => {
 
     gsap.fromTo(
       titleWrapperRef.current,
-      { opacity: 0, y: 20 },
+      { opacity: 0 },
       {
         opacity: 1,
-        y: 0,
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
@@ -91,7 +90,7 @@ const AccordionItem = ({ index, title, content, isOpen, onClick }) => {
       <div ref={titleWrapperRef} className="overflow-hidden">
         <button
           onClick={onClick}
-          className="w-full flex justify-between items-center py-4 text-left xl:text-[1.5vw] lg:text-[2.5vw] md:text-[3.5vw] font-[PPNeueMontreal] font-meduim text-[5vw] tracking-tight font-medium text-black"
+          className="w-full flex justify-between items-center py-4 text-left xl:text-[1.5vw] lg:text-[2.5vw] md:text-[3.5vw] font-[PPNeueMontreal] font-semibold text-[5vw] tracking-tight  text-black/70"
         >
           {title}
 

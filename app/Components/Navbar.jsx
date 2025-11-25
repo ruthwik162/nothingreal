@@ -237,31 +237,36 @@ const Navbar = () => {
 
 // ✅ Page transition animation
 const pageAnimation = () => {
-  document.documentElement.animate(
+  const oldView = document.documentElement;
+
+  // Animate OLD page – fade + slight move up
+  oldView.animate(
     [
-      { opacity: 1, scale: 1, transform: "translateY(0)" },
-      { opacity: 0.9, scale: 1, transform: "translateY(-30%)" },
+      { opacity: 1, transform: "translateY(0px)" },
+      { opacity: 0, transform: "translateY(-40px)" }
     ],
     {
-      duration: 1500,
-      easing: "cubic-bezier(0.87, 0, 0.13,1)",
-      fill: "forwards",
+      duration: 500,
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
       pseudoElement: "::view-transition-old(root)",
+      fill: "forwards"
     }
   );
 
-  document.documentElement.animate(
+  // Animate NEW page – fade in + move from bottom
+  oldView.animate(
     [
-      { scale: 1, clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)" },
-      { scale: 1, clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0% 0%)" },
+      { opacity: 0, transform: "translateY(40px)" },
+      { opacity: 1, transform: "translateY(0px)" }
     ],
     {
-      duration: 1500,
-      easing: "cubic-bezier(0.87, 0, 0.13,1)",
-      fill: "forwards",
+      duration: 650,
+      easing: "cubic-bezier(0.4, 0, 0.2, 1)",
       pseudoElement: "::view-transition-new(root)",
+      fill: "forwards"
     }
   );
 };
+
 
 export default Navbar;
