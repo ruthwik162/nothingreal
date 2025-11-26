@@ -1,73 +1,57 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState, useRef } from "react";
 
 export default function Preloader() {
-  const loaderRef = useRef(null);
-  const counterRef = useRef(null);
-  const [count, setCount] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    const el = loaderRef.current;
+    // Lock html & body fully
+    document.documentElement.classList.add("loading");
+    document.body.classList.add("loading");
 
-    // Start fully visible (mask from bottom)
-    gsap.set(el, { clipPath: "inset(0% 0% 0% 0%)", willChange: "clip-path, opacity" });
-
-    // Simulate loading progress (until window load completes)
-    let current = 0;
-    const simulateProgress = () => {
-      if (current < 95) {
-        current += Math.random() * 3;
-        setCount(Math.floor(current));
-        requestAnimationFrame(simulateProgress);
-      }
-    };
-    simulateProgress();
-
-    // Reveal animation after full page load
-    const reveal = () => {
-      setCount(100); // complete instantly
-
-      const tl = gsap.timeline({ defaults: { ease: "power4.inOut" } });
-      tl.to(el, {
-        clipPath: "inset(100% 0% 0% 0%)", // slide up reveal
-        duration: 1.2,
-      }).to(el, {
-        opacity: 0,
-        duration: 0.4,
-        onComplete: () => {
-          el.style.display = "none";
-        },
-      });
+    const startProgress = () => {
+      intervalRef.current = setInterval(() => {
+        setPercent((p) => {
+          if (p < 60) return p + Math.random() * 6;
+          if (p < 90) return p + Math.random() * 3;
+          return Math.min(98, p + Math.random() * 1);
+        });
+      }, 200);
     };
 
-    // Wait until all assets (images, fonts, etc.) are fully loaded
+    startProgress();
+
+    const onPageLoad = () => {
+      setPercent(100);
+      setLoaded(true);
+
+      clearInterval(intervalRef.current);
+
+      // Fade-out ki match ga delay
+      setTimeout(() => {
+        document.documentElement.classList.remove("loading");
+        document.body.classList.remove("loading");
+      }, 800);
+    };
+
     if (document.readyState === "complete") {
-      reveal();
+      onPageLoad();
     } else {
-      window.addEventListener("load", reveal);
+      window.addEventListener("load", onPageLoad);
+      return () => window.removeEventListener("load", onPageLoad);
     }
-
-    return () => {
-      window.removeEventListener("load", reveal);
-    };
   }, []);
-
-  // Update counter text efficiently (avoiding excessive re-renders)
-  useEffect(() => {
-    if (counterRef.current) counterRef.current.textContent = `${count}%`;
-  }, [count]);
 
   return (
     <div
-      ref={loaderRef}
-      aria-hidden="true"
-      className="fixed inset-0 z-[9999] bg-black text-white flex flex-col items-center justify-center overflow-hidden"
+      id="preloader"
+      className={`fixed inset-0 z-[99999] bg-black flex items-center justify-center transition-all duration-700 ${
+        loaded ? "opacity-0 pointer-events-none" : "opacity-100"
+      }`}
     >
-      <h1 className="text-4xl font-bold tracking-wider mb-4 uppercase">NR STUDIO</h1>
-      <span ref={counterRef} className="text-3xl font-mono">
-        0%
-      </span>
+      <h1 className="text-white text-4xl">{percent}%</h1>
     </div>
   );
 }

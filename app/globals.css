@@ -228,3 +228,34 @@ body {
 #card-6 .card-inner {
   background-color: rgba(238, 252, 80, 0.804);
 }
+
+
+/* Lock page before load */
+body.loading {
+  overflow: hidden;
+}
+
+/* Preloader full-screen */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #000; /* change color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  transition: opacity 0.5s ease;
+}
+
+/* Fade out */
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.loading,
+body.loading {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
