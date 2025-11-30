@@ -65,13 +65,28 @@ const Navbar = () => {
     }
   }, [menuOpen]);
 
-  // ✅ Lock scroll when menu is open
+  const freezeScroll = () => {
+    const scrollY = window.scrollY;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.dataset.scrollY = scrollY;
+  };
+
+  const unfreezeScroll = () => {
+    const scrollY = document.body.dataset.scrollY;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, parseInt(scrollY || "0"));
+  };
+
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden"; // Stop scroll
-    } else {
-      document.body.style.overflow = ""; // Restore scroll
-    }
+    menuOpen ? freezeScroll() : unfreezeScroll();
   }, [menuOpen]);
 
 
@@ -128,7 +143,7 @@ const Navbar = () => {
       {/* ✅ Fullscreen Menu Overlay */}
       <div
         ref={navRef}
-        className="w-screen h-screen fixed top-0 left-0  flex-col  bg-black text-white z-40 flex items-start justify-start"
+        className="w-screen h-1/2 fixed top-0 left-0  flex-col  bg-black text-white z-40 flex items-start justify-start"
         style={{
           clipPath: "inset(0% 0% 100% 0%)",
           pointerEvents: "none",

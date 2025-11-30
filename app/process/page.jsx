@@ -110,9 +110,9 @@ const Page = () => {
     return (
         <ReactLenis root>
 
-            <div className="w-full min-h-screen overflow-hidden bg-white text-black  mx-auto">
+            <div className="w-full h-full overflow-hidden bg-white text-black  mx-auto">
 
-                <section className="w-full h-screen px-[5vw] md:px-[2vw] md:mt-[5vw] mt-[10vw]   ">
+                <section className="w-full min-h-screen px-[5vw] md:px-[2vw] md:mt-[5vw] mt-[10vw]   ">
                     <div className="grid grid-cols-1 w-full  md:grid-cols-12 gap-4 pt-[10vw] md:pt-[1vw]">
                         <div className=" md:col-span-3 md:col-start-1">
                             <h1 sty className="xl:text-[1.5vw] xl:leading-[2vw] lg:text-[2vw] lg:leading-[2vw] md:text-[2.5vw] md:leading-[3vw] text-[5vw] dm-mono-medium uppercase font-bold ">(Our Process)</h1>
@@ -156,7 +156,7 @@ const Page = () => {
 
 
                                 <TextY>
-                                    <p className="text-base sm:text-lg pt-[5vw] font-[PPNeueMontreal] font-semibold text-[5vw] max-w-md leading-[4vw]  md:text-[3vw] md:leading-[3vw] lg:text-[2vw] lg:leading-[2vw] xl:text-[1.8vw] text-black/80 xl:leading-[1.8vw]    ">
+                                    <p className="text-base sm:text-lg pt-[5vw] font-[PPNeueMontreal] font-semibold text-[5vw] max-w-md leading-[5vw]  md:text-[3vw] md:leading-[3vw] lg:text-[2vw] lg:leading-[2vw] xl:text-[1.8vw] text-black/80 xl:leading-[1.8vw]    ">
                                         Our 7-stage Agile flow blends design principles with development precision. We build in cycles of clarity and collaboration — keeping your vision alive at every step.
                                     </p>
                                 </TextY>
@@ -168,7 +168,7 @@ const Page = () => {
                                 <div className="overflow-hidden  w-full">
                                     {[" Concept & Requirement Gathering", " Sprint Planning", " Design & Development", "Testing & Quality Assurance", " Sprint Review & Feedback", " Deployment & Release", " User Feedback & Iteration"].map((items, id) => (
                                         <div key={id} className="border-b border-black/70 max-w-md">
-                                            <h1 className="xl:text-[1.2vw] lg:text-[1.5vw] font-[PPNeueMontreal] font-semibold md:text-[1.8vw] text-[4.5vw] py-2"><span className="text-black/60 text-[3vw] md:text-[1.2vw]">({id + 1})</span> &nbsp; {items}</h1>
+                                            <h1 className="xl:text-[1.2vw] lg:text-[1.5vw] font-[PPNeueMontreal] text-black/70 font-semibold md:text-[1.8vw] text-[4.5vw] py-2"><span className="text-black/60 text-[3vw] md:text-[1.2vw]">({id + 1})</span> &nbsp; {items}</h1>
                                         </div>
                                     ))}
                                 </div>
@@ -202,7 +202,7 @@ const Page = () => {
                                     </h1>
                                 </div>
                             </div>
-                            <div className="md:col-start-4 md:col-span-4 gap-3  items-start justify-start">
+                            <div className="md:col-start-4 md:col-span-4 gap-3 w-full    items-start justify-start">
                                 <img src={stage.bg} alt={stage.title} className=" w-full h-full  object-cover mix-blend-normal object-center" />
                             </div>
                             <div className="md:col-start-9 md:col-span-4 gap-3 items-start justify-start">
@@ -230,10 +230,10 @@ const Page = () => {
                 <section className="w-full h-full md:hidden block px-[5vw] bg-white">
                     <div className="grid grid-cols-6 gap-4 pt-[20vw] ">
                         <div className="pt-[5vw] font-[PPNeueMontreal] col-start-2 col-span-5">
-                            <h1 className="text-[10vw] leading-[9vw] font-bold">Steps Involved In Our Process</h1>
+                            <h1 className="text-[10vw] leading-[9vw] text-black/70 font-bold">Steps Involved In Our Process</h1>
                         </div>
                         {/* card1 */}
-                        <div className="col-start-1 col-span-5 font-[PPNeueMontreal] pt-[5vw]">
+                        <div className="col-start-1 col-span-5 font-[PPNeueMontreal] pt-[15vw]">
                             <div className="overflow-hidden">
                                 <h1 className="text-[6vw] leading-[6vw] font-bold">[1] &nbsp; Concept & Requirement Gathering</h1>
                             </div>
@@ -241,9 +241,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    In this stage, we collaborate closely with you to understand your goals, ideas, and expectations. We gather all creative and technical requirements to set a clear direction and build a strong foundation for the project.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        In this stage, we collaborate closely with you to understand your goals, ideas, and expectations. We gather all creative and technical requirements to set a clear direction and build a strong foundation for the project.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
 
@@ -256,9 +258,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    At this stage, we break the project into agile sprints, defining specific goals, deliverables, and timelines for each. From the previous stage’s gathered requirements, we translate insights into structured, actionable plans.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        At this stage, we break the project into agile sprints, defining specific goals, deliverables, and timelines for each. From the previous stage’s gathered requirements, we translate insights into structured, actionable plans.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
                         {/* card3 */}
@@ -270,9 +274,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    Building on the sprint plan, this stage focuses on turning concepts into reality. Our designers and developers work hand-in-hand to create an engaging interface and seamless functionality — ensuring both beauty and performance.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        Building on the sprint plan, this stage focuses on turning concepts into reality. Our designers and developers work hand-in-hand to create an engaging interface and seamless functionality — ensuring both beauty and performance.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
                         {/* card4 */}
@@ -284,9 +290,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    In this stage, every element is rigorously tested for performance, responsiveness, and consistency. From the previous development stage, we ensure all components meet quality benchmarks and deliver a flawless user experience.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        In this stage, every element is rigorously tested for performance, responsiveness, and consistency. From the previous development stage, we ensure all components meet quality benchmarks and deliver a flawless user experience.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
                         <div className="col-start-1 col-span-5 font-[PPNeueMontreal] pt-[5vw]">
@@ -297,9 +305,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    At this stage, we review the completed sprint with you, discuss results, and gather your valuable feedback. From the testing outcomes, we refine features and ensure the product aligns perfectly with your expectations.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        At this stage, we review the completed sprint with you, discuss results, and gather your valuable feedback. From the testing outcomes, we refine features and ensure the product aligns perfectly with your expectations.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
                         <div className="col-start-2 col-span-5 font-[PPNeueMontreal] pt-[5vw]">
@@ -310,9 +320,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    In this stage, your product moves from development to the live environment. From the refined build, we handle deployment with precision — ensuring stability, security, and an uninterrupted launch experience.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        In this stage, your product moves from development to the live environment. From the refined build, we handle deployment with precision — ensuring stability, security, and an uninterrupted launch experience.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
                         <div className="col-start-1 col-span-5 font-[PPNeueMontreal] pt-[5vw]">
@@ -323,9 +335,11 @@ const Page = () => {
                                 <img src={images.mainbanner1.src} className="w-full h-full object-cover object-center" alt="" />
                             </div>
                             <div className="overflow-hidden w-full h-full pt-[5vw]">
-                                <p className="text-[4vw] leading-[4vw] font-semibold">
-                                    At this final stage, we observe user interactions, gather real-world insights, and iterate for continuous improvement. From the live deployment, this stage ensures your product evolves with user needs and long-term growth goals.
-                                </p>
+                                <TextY>
+                                    <p className="text-[4vw] leading-[4vw] font-semibold">
+                                        At this final stage, we observe user interactions, gather real-world insights, and iterate for continuous improvement. From the live deployment, this stage ensures your product evolves with user needs and long-term growth goals.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
 

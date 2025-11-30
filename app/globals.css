@@ -150,25 +150,7 @@ body {
   box-sizing: border-box;
 }
 
-::view-transition-group(root) {
-  z-index: auto !important;
-}
 
-::view-transition-image-pair(root) {
-  isolation: isolate;
-  will-change: transform, opacity, scale;
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 1000;
-  animation: none !important;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-  animation: none !important;
-}
 
 .main {
   will-change: transform, opacity;
@@ -239,11 +221,11 @@ body.loading {
 #preloader {
   position: fixed;
   inset: 0;
-  background: #000; /* change color */
+  /* change color */  
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999999;
+  z-index: 999;
   transition: opacity 0.5s ease;
 }
 
@@ -259,3 +241,9 @@ body.loading {
   height: 100vh !important;
 }
 
+
+html.menu-open,
+body.menu-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
