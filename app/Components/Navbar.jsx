@@ -453,6 +453,7 @@ const Navbar = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         setMenuOpen(false);
+                        closeMenu();
                         router.push(link.href, { onTransitionReady: pageAnimation });
                       }}
                       href={link.href}
