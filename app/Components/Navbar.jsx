@@ -12,7 +12,10 @@ const Navbar = () => {
   const lineRefs = useRef([]);
   const mail = useRef(null);
   const lineMail = useRef(null);
-  const navRef = useRef(null);
+  const [menuOverlayOpen, setMenuOverlayOpen] = useState(false);
+  const [menuPanelOpen, setMenuPanelOpen] = useState(false);
+  const menuOverlayRef = useRef(null);
+  const navRef = useRef(null); // already exists
   const [menuOpen, setMenuOpen] = useState(false);
   const [conOpen, setConOpen] = useState(false);
   const [coOpen, setCoOpen] = useState(false);
@@ -85,44 +88,86 @@ const Navbar = () => {
     { name: "Process", href: "/process" },
   ];
 
-  // ✅ Smooth 60fps animation using will-change and GPU acceleration
+
+  useEffect(() => {
+    if (!menuOverlayRef.current) return;
+
+    gsap.set(menuOverlayRef.current, {
+      opacity: 0,
+      pointerEvents: "none",
+      zIndex: -1,
+    });
+
+    if (menuOverlayOpen) {
+      gsap.to(menuOverlayRef.current, {
+        opacity: 1,
+        duration: 1.1,
+        ease: "power3.out",
+        pointerEvents: "auto",
+        zIndex: 30,
+      });
+    } else {
+      gsap.to(menuOverlayRef.current, {
+        opacity: 0,
+        duration: 1,
+        ease: "power3.in",
+        pointerEvents: "none",
+        zIndex: -1,
+      });
+    }
+  }, [menuOverlayOpen]);
+
   useEffect(() => {
     if (!navRef.current) return;
 
-    navRef.current.style.willChange = "clip-path, transform, opacity";
-    gsap.set(".textN", { willChange: "transform, opacity" });
+    gsap.set(navRef.current, {
+      y: "-100%",
+      pointerEvents: "none",
+    });
 
-    if (menuOpen) {
+    if (menuPanelOpen) {
       gsap.to(navRef.current, {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.05,
-        ease: "power4.inOut",
+        y: "0%",
+        duration: 1.3,
+        ease: "power4.out",
         pointerEvents: "auto",
-        force3D: true,
       });
 
       gsap.fromTo(
         ".textN",
-        { y: 300, opacity: 1, force3D: true },
+        { y: 200, opacity: 0 },
         {
           y: 0,
           opacity: 1,
+          stagger: 0.04,
           duration: 1,
+          delay: 0.3,
           ease: "power4.out",
-          stagger: 0.03,
-          delay: 0.32,
         }
       );
     } else {
       gsap.to(navRef.current, {
-        clipPath: "inset(0% 0% 100% 0%)",
-        duration: 0.6,
-        ease: "power3.inOut",
+        y: "-100%",
+        duration: 1,
+        ease: "power4.inOut",
         pointerEvents: "none",
-        force3D: true,
       });
     }
-  }, [menuOpen]);
+  }, [menuPanelOpen]);
+
+  const openMenu = () => {
+    setMenuOverlayOpen(true);
+    setTimeout(() => setMenuPanelOpen(true), 300);
+    freezeScroll();
+  };
+
+  const closeMenu = () => {
+    setMenuPanelOpen(false);
+    setTimeout(() => setMenuOverlayOpen(false), 300);
+    unfreezeScroll();
+  };
+
+
 
 
   useEffect(() => {
@@ -201,19 +246,18 @@ const Navbar = () => {
   useEffect(() => {
     menuOpen ? freezeScroll() : unfreezeScroll();
   }, [menuOpen]);
-  useEffect(() => {
-    coOpen || conOpen ? freezeScroll() : unfreezeScroll();
-  }, [coOpen, conOpen]);
 
 
   const openContact = () => {
     setCoOpen(true);
     setTimeout(() => setConOpen(true), 50);
+    freezeScroll()
   };
 
   const closeContact = () => {
     setConOpen(false);
     setTimeout(() => setCoOpen(false), 50);
+    unfreezeScroll()
   };
 
 
@@ -355,7 +399,7 @@ const Navbar = () => {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={4}
+                  rows={5}
                   required
                   className="w-full bg-transparent border p-2 outline-none resize-none"
                 />
@@ -389,45 +433,50 @@ const Navbar = () => {
       </div>
 
       {/* ✅ Fullscreen Menu Overlay */}
-      <div ref={navRef} className="w-screen h-[70%] fixed top-0 left-0  flex-col  bg-black text-white z-20 flex items-start justify-start"
-        style={{
-          clipPath: "inset(0% 0% 100% 0%)",
-          pointerEvents: "none",
-        }}
-      >
+      <div ref={menuOverlayRef} className="w-screen h-full fixed top-0 backdrop-blur-2xl z-20 left-0 p-[2vw] ">
         <div
-          style={{ fontStretch: "75%" }} className="md:w-1/2 h-full flex-col  flex items-start mx-[5vw] md:mx-[2vw] font-[PPNeueMontreal] font-bold uppercase  xl:text-[3vw] xl:leading-[3vw] text-[11vw] leading-[10.5vw] md:text-[8vw] md:leading-[7.5vw] lg:text-[7vw] lg:leading-[6.5vw] space-y-2  justify-center "  >
-          {links.map((link, i) => (
-            <div key={link.name} className="relative tracking-tight overflow-hidden group cursor-pointer" >
-              <HoverText>
-                <h1 className="overflow-hidden ">
-                  <a
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setMenuOpen(false);
-                      router.push(link.href, { onTransitionReady: pageAnimation });
-                    }}
-                    href={link.href}
-                    className="block overflow-hidden textN relative"
-                  >
-                    {link.name}
-                  </a>
-                </h1>
-              </HoverText>
-            </div>
-          ))}
-        </div>
-        <div className="mt-[6vw] md:mt-[3vw] text-[4vw] font-[PPNeueMontreal] font-semibold md:text-[1.2vw]  px-[2vw] tracking-tight text-gray-300 space-y-2">
-          <p className="opacity-80">Get in Touch</p>
-          <div className="flex gap-8 font-mono overflow-hidden group uppercase">
-            <div className="overflow-hidden">
-              <a href="mailto:hello@nrstudios.in" className="hover:text-white textN transition">hello@nrstudios.in</a>
-            </div>
-            <div className="overflow-hidden">
-              <a href="https://www.instagram.com/nrstudio.tech/" target="_blank" className="hover:text-white textN transition">Instagram</a>
-            </div>
-            <div className="overflow-hidden">
-              <a href="https://linkedin.com/company/nrstudios" target="_blank" className="hover:text-white textN transition">LinkedIn</a>
+          ref={navRef}
+          className="w-full h-1/2 flex-col  bg-black text-white p-[2vw] z-40 rounded-sm flex items-start justify-start">
+          <button
+            onClick={closeMenu}
+            className="absolute top-6 right-6 text-xs uppercase opacity-60 hover:opacity-100"
+          >
+            Close
+          </button>
+          <div
+            style={{ fontStretch: "75%" }} className="md:w-1/2 h-full flex-col  flex items-start mx-[5vw] md:mx-[2vw] font-[PPNeueMontreal] font-bold uppercase  xl:text-[3vw] xl:leading-[3vw] text-[11vw] leading-[10.5vw] md:text-[8vw] md:leading-[7.5vw] lg:text-[7vw] lg:leading-[6.5vw] space-y-2  justify-center "  >
+            {links.map((link, i) => (
+              <div key={link.name} className="relative tracking-tight overflow-hidden group cursor-pointer" >
+                <HoverText>
+                  <h1 className="overflow-hidden ">
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMenuOpen(false);
+                        router.push(link.href, { onTransitionReady: pageAnimation });
+                      }}
+                      href={link.href}
+                      className="block overflow-hidden textN relative"
+                    >
+                      {link.name}
+                    </a>
+                  </h1>
+                </HoverText>
+              </div>
+            ))}
+          </div>
+          <div className="mt-[6vw] md:mt-[3vw] text-[4vw] font-[PPNeueMontreal] font-semibold md:text-[1.2vw]  px-[2vw] tracking-tight text-gray-300 space-y-2">
+            <p className="opacity-80">Get in Touch</p>
+            <div className="flex gap-8 font-mono overflow-hidden group uppercase">
+              <div className="overflow-hidden">
+                <a href="mailto:hello@nrstudios.in" className="hover:text-white textN transition">hello@nrstudios.in</a>
+              </div>
+              <div className="overflow-hidden">
+                <a href="https://www.instagram.com/nrstudio.tech/" target="_blank" className="hover:text-white textN transition">Instagram</a>
+              </div>
+              <div className="overflow-hidden">
+                <a href="https://linkedin.com/company/nrstudios" target="_blank" className="hover:text-white textN transition">LinkedIn</a>
+              </div>
             </div>
           </div>
         </div>
@@ -480,12 +529,13 @@ const Navbar = () => {
 
             <div className="overflow-hidden button">
               <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                ref={button2}
+                onClick={() => {
+                  menuOverlayOpen ? closeMenu() : openMenu();
+                }} ref={button2}
                 className="relative cursor-pointer w-[100px] h-[35px] md:w-[120px] md:h-[41px] z-40 border border-white rounded-full font-[dbsharp] font-semibold overflow-hidden uppercase tracking-wider" >
                 <span ref={hoverFill2} className="absolute w-[30px] h-[30px] bg-white inset-0 rounded-full will-change-transform scale-0"></span>
                 <span ref={textHover2} className="relative z-10 text-[4vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1vw] text-white flex items-center justify-center gap-3 mix-blend-difference" >
-                  {menuOpen ? "Close" : "Menu"}{" "}
+                  {menuOverlayOpen ? "Close" : "Menu"}
                   <ArrowRight ref={arrow2} strokeWidth={2} className="-rotate-45" />{" "}
                 </span>
               </button>
