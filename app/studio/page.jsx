@@ -598,24 +598,18 @@ const Page = () => {
                             </div>
                         </div>
                         <div className="xl:col-start-11 col-start-4 col-span-3 xl:col-span-2">
-                            <img src={images.ruthwik.src} className="w-full h-full object-center object-cover" alt="" />
+                            <img src={images.gopi.src} className="w-full h-full object-center object-cover" alt="" />
                             <div className="flex items-center justify-between">
-                                <h1 className="xl:text-[1vw] text-[4vw] text-white mix-blend-difference">Vinod</h1>
-                                <h1 className="xl:text-[0.7vw] text-[2vw] text-white mix-blend-difference">Ui Designer</h1>
+                                <h1 className="xl:text-[1vw] text-[4vw] text-white mix-blend-difference">Gopi Krishna</h1>
+                                <h1 className="xl:text-[0.7vw] text-[2vw] text-white mix-blend-difference">Backend Developer</h1>
                             </div>
                         </div>
-                        <div className="xl:col-start-4 col-start-1 col-span-3 xl:col-span-2">
-                            <img src={images.Rohith.src} className="w-full h-full object-center object-cover" alt="" />
-                            <div className="flex items-center justify-between">
-                                <h1 className="xl:text-[1vw] text-[4vw] text-white mix-blend-difference">Rohith</h1>
-                                <h1 className="xl:text-[0.7vw] text-[2vw] text-white mix-blend-difference">Full-Stack Developer</h1>
-                            </div>
-                        </div>
+                      
                     </div>
 
                 </section>
 
-                <section className="w-full min-h-screen overflow-hidden md:h-screen">
+                <section className="w-full  overflow-hidden ">
                     <Footer />
                 </section>
 

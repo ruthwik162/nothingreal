@@ -14,10 +14,69 @@ const Navbar = () => {
   const lineMail = useRef(null);
   const navRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [conOpen, setConOpen] = useState(false);
+  const [coOpen, setCoOpen] = useState(false);
   const button2 = useRef(null);
   const hoverFill2 = useRef(null);
   const textHover2 = useRef(null);
   const arrow2 = useRef(null);
+  const conRef = useRef(null);
+  const coRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    projectType: "Website",
+    budget: "₹50k – ₹1L",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send");
+      }
+
+      setSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        projectType: "Website",
+        budget: "₹50k – ₹1L",
+        message: "",
+      });
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const links = [
     { name: "Home", href: "/" },
@@ -65,6 +124,60 @@ const Navbar = () => {
     }
   }, [menuOpen]);
 
+
+  useEffect(() => {
+    if (!coRef.current) return;
+
+    gsap.set(coRef.current, {
+      opacity: 0,
+      pointerEvents: "none",
+      zIndex: -1,
+    });
+
+    if (coOpen) {
+      gsap.to(coRef.current, {
+        opacity: 1,
+        duration: 1.1,
+        ease: "power3.out",
+        pointerEvents: "auto",
+        zIndex: 40,
+      });
+    } else {
+      gsap.to(coRef.current, {
+        opacity: 0,
+        duration: 1.1,
+        ease: "power3.in",
+        pointerEvents: "none",
+        zIndex: -1,
+      });
+    }
+  }, [coOpen]);
+
+  useEffect(() => {
+    if (!conRef.current) return;
+
+    gsap.set(conRef.current, {
+      x: 1500,
+      pointerEvents: "none",
+    });
+
+    if (conOpen) {
+      gsap.to(conRef.current, {
+        x: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        pointerEvents: "auto",
+      });
+    } else {
+      gsap.to(conRef.current, {
+        x: 1500,
+        duration: 1.5,
+        ease: "power4.inOut",
+      });
+    }
+  }, [conOpen]);
+
+
   const freezeScroll = () => {
     const scrollY = window.scrollY;
     document.body.style.position = "fixed";
@@ -88,6 +201,21 @@ const Navbar = () => {
   useEffect(() => {
     menuOpen ? freezeScroll() : unfreezeScroll();
   }, [menuOpen]);
+  useEffect(() => {
+    coOpen || conOpen ? freezeScroll() : unfreezeScroll();
+  }, [coOpen, conOpen]);
+
+
+  const openContact = () => {
+    setCoOpen(true);
+    setTimeout(() => setConOpen(true), 50);
+  };
+
+  const closeContact = () => {
+    setConOpen(false);
+    setTimeout(() => setCoOpen(false), 50);
+  };
+
 
 
   // ✅ Button hover fill (GPU accelerated)
@@ -140,25 +268,137 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ✅ Fullscreen Menu Overlay */}
       <div
-        ref={navRef}
-        className="w-screen h-1/2 fixed top-0 left-0  flex-col  bg-black text-white z-40 flex items-start justify-start"
+        ref={coRef}
+        className="fixed top-0 right-0 w-full backdrop-blur-2xl h-full md:h-screen  p-[1vw] text-white z-40 ">
+        <div ref={conRef} className="md:w-1/2 h-full w-full bg-black md:ml-[50%] font-[PPNeueMontreal]  relative p-[5vw] md:p-[2vw] rounded-sm">
+
+
+          <button
+            onClick={closeContact}
+            className="absolute top-6 right-6 text-xs uppercase opacity-60 hover:opacity-100"
+          >
+            Close
+          </button>
+
+          <div className="h-full flex flex-col justify-center">
+            <h2 className="formItem text-[8vw] md:text-[3vw] font-bold leading-tighter uppercase mb-8">
+              Start a Project
+            </h2>
+
+            <form onSubmit={handleSubmit} className="space-y-6 font-mono text-sm">
+              <div className="formItem">
+                <label>Name</label>
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-transparent border-b p-2 outline-none"
+                />
+              </div>
+
+              <div className="formItem">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-transparent border-b p-2 outline-none"
+                />
+              </div>
+
+              <div className="formItem">
+                <label>Company / Brand</label>
+                <input
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="w-full bg-transparent border-b p-2 outline-none"
+                />
+              </div>
+
+              <div className="formItem">
+                <label>Project Type</label>
+                <select
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  className="w-full bg-black border-b p-2 outline-none"
+                >
+                  <option>Website</option>
+                  <option>Web App</option>
+                  <option>Branding</option>
+                  <option>UI/UX</option>
+                </select>
+              </div>
+
+              <div className="formItem">
+                <label>Estimated Budget</label>
+                <select
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  className="w-full bg-black border-b p-2 outline-none"
+                >
+                  <option>₹50k – ₹1L</option>
+                  <option>₹1L – ₹3L</option>
+                  <option>₹3L+</option>
+                </select>
+              </div>
+
+              <div className="formItem">
+                <label>Project Brief</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  required
+                  className="w-full bg-transparent border p-2 outline-none resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="formItem border px-6 py-3 uppercase mt-4 opacity-80 hover:opacity-100"
+              >
+                {loading ? "Sending..." : "Send Enquiry →"}
+              </button>
+
+              {success && (
+                <p className="text-green-400 text-sm mt-4">
+                  ✔ Enquiry sent successfully. We’ll contact you soon.
+                </p>
+              )}
+
+              {error && (
+                <p className="text-red-400 text-sm mt-4">
+                  {error}
+                </p>
+              )}
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* ✅ Fullscreen Menu Overlay */}
+      <div ref={navRef} className="w-screen h-[70%] fixed top-0 left-0  flex-col  bg-black text-white z-20 flex items-start justify-start"
         style={{
           clipPath: "inset(0% 0% 100% 0%)",
           pointerEvents: "none",
         }}
       >
         <div
-          style={{ fontStretch: "75%" }}
-          className="md:w-1/2 h-full flex-col  flex items-start mx-[5vw] md:mx-[2vw] font-[PPNeueMontreal] font-bold uppercase  xl:text-[4.5vw] xl:leading-[4vw] text-[11vw] leading-[10.5vw] md:text-[8vw] md:leading-[7.5vw] lg:text-[7vw] lg:leading-[6.5vw] space-y-2  justify-center "
-        >
+          style={{ fontStretch: "75%" }} className="md:w-1/2 h-full flex-col  flex items-start mx-[5vw] md:mx-[2vw] font-[PPNeueMontreal] font-bold uppercase  xl:text-[3vw] xl:leading-[3vw] text-[11vw] leading-[10.5vw] md:text-[8vw] md:leading-[7.5vw] lg:text-[7vw] lg:leading-[6.5vw] space-y-2  justify-center "  >
           {links.map((link, i) => (
-            <div
-              key={link.name}
-              className="relative tracking-tight overflow-hidden group cursor-pointer"
-
-            >
+            <div key={link.name} className="relative tracking-tight overflow-hidden group cursor-pointer" >
               <HoverText>
                 <h1 className="overflow-hidden ">
                   <a
@@ -177,17 +417,14 @@ const Navbar = () => {
             </div>
           ))}
         </div>
-        <div className="mt-[6vw] md:mt-[3vw] text-[4vw] font-[PPNeueMontreal] font-semibold md:text-[1.2vw]  mx-[5vw] tracking-tight text-gray-300 space-y-2">
+        <div className="mt-[6vw] md:mt-[3vw] text-[4vw] font-[PPNeueMontreal] font-semibold md:text-[1.2vw]  px-[2vw] tracking-tight text-gray-300 space-y-2">
           <p className="opacity-80">Get in Touch</p>
-          <div className="flex  flex-col overflow-hidden group uppercase">
+          <div className="flex gap-8 font-mono overflow-hidden group uppercase">
             <div className="overflow-hidden">
               <a href="mailto:hello@nrstudios.in" className="hover:text-white textN transition">hello@nrstudios.in</a>
             </div>
             <div className="overflow-hidden">
-              <a href="https://instagram.com/nrstudios" target="_blank" className="hover:text-white textN transition">Instagram</a>
-            </div>
-            <div className="overflow-hidden">
-              <a href="https://dribbble.com/nrstudios" target="_blank" className="hover:text-white textN transition">Dribbble</a>
+              <a href="https://www.instagram.com/nrstudio.tech/" target="_blank" className="hover:text-white textN transition">Instagram</a>
             </div>
             <div className="overflow-hidden">
               <a href="https://linkedin.com/company/nrstudios" target="_blank" className="hover:text-white textN transition">LinkedIn</a>
@@ -199,7 +436,7 @@ const Navbar = () => {
       {/* ✅ Top Navbar */}
       <div
         style={{ fontFamily: "MyFont2" }}
-        className="w-full fixed top-0 text-white mix-blend-difference left-0 p-5 md:px-[2vw] xl:px-[2vw] z-50 "
+        className="w-full fixed top-0 text-white mix-blend-difference left-0 p-5 md:px-[2vw] xl:px-[2vw] z-20 "
       >
         <div className="flex justify-between items-center border-b pb-1">
           <div
@@ -233,9 +470,19 @@ const Navbar = () => {
 
             <div className="overflow-hidden button">
               <button
+                onClick={openContact}
+                ref={button2}
+                className="relative z-20 cursor-pointer w-[100px] h-[35px] md:w-[120px] md:h-[41px] border border-white rounded-full font-[dbsharp] font-semibold overflow-hidden uppercase tracking-wider flex items-center justify-center" >
+                {menuOpen ? "Close" : "Contact"}{" "}
+                <ArrowRight ref={arrow2} strokeWidth={2} className="-rotate-45" />{" "}
+              </button>
+            </div>
+
+            <div className="overflow-hidden button">
+              <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 ref={button2}
-                className="relative cursor-pointer w-[100px] h-[35px] md:w-[120px] md:h-[41px] border border-white rounded-full font-[dbsharp] font-semibold overflow-hidden uppercase tracking-wider" >
+                className="relative cursor-pointer w-[100px] h-[35px] md:w-[120px] md:h-[41px] z-40 border border-white rounded-full font-[dbsharp] font-semibold overflow-hidden uppercase tracking-wider" >
                 <span ref={hoverFill2} className="absolute w-[30px] h-[30px] bg-white inset-0 rounded-full will-change-transform scale-0"></span>
                 <span ref={textHover2} className="relative z-10 text-[4vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1vw] text-white flex items-center justify-center gap-3 mix-blend-difference" >
                   {menuOpen ? "Close" : "Menu"}{" "}

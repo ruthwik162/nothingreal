@@ -18,6 +18,7 @@ import mobileLogo from './mobileLogo.png'
 import studioipad from './Studio_Ipad.png'
 import feviconico from './feviconico.png'
 import arrow from './Arrow_Down.png'
+import gopi from './Gopi.jpg'
 
 
 export const images = {
@@ -33,7 +34,8 @@ export const images = {
   arrow,
   ruthwik,
   Rohith,
-  varshit
+  varshit,
+  gopi
 }
 
 
