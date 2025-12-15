@@ -609,7 +609,7 @@ const Page = () => {
 
                 </section>
 
-                <section className="w-full  overflow-hidden ">
+                <section className="w-full h-full  overflow-hidden ">
                     <Footer />
                 </section>
 
